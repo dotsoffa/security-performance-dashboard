@@ -1,0 +1,50 @@
+{
+  "repositories": [
+    {
+      "owner": "dotdigitalgroup",
+      "name": "repo1",
+      "endpoints": [
+        {
+          "name": "API Principal",
+          "url": "https://api.exemplo.com/health",
+          "expected_status": 200,
+          "timeout_ms": 5000,
+          "alert_threshold_ms": 1000
+        }
+      ],
+      "cloud_resources": [
+        {
+          "name": "Database Cluster",
+          "type": "RDS",
+          "cost_center": "infra"
+        },
+        {
+          "name": "App Servers",
+          "type": "EC2",
+          "cost_center": "app"
+        }
+      ]
+    }
+  ],
+  "notification_settings": {
+    "email_alerts": true,
+    "email_recipients": ["itops@empresa.com"],
+    "severity_thresholds": {
+      "high": {
+        "response_time_ms": 2000,
+        "error_rate_percent": 5,
+        "cost_increase_percent": 20
+      },
+      "medium": {
+        "response_time_ms": 1000,
+        "error_rate_percent": 2,
+        "cost_increase_percent": 10
+      },
+      "low": {
+        "response_time_ms": 500,
+        "error_rate_percent": 1,
+        "cost_increase_percent": 5
+      }
+    }
+  }
+}
