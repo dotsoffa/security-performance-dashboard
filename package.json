@@ -1,0 +1,28 @@
+{
+  "name": "security-performance-dashboard",
+  "version": "1.0.0",
+  "description": "Sistema centralizado de monitoramento de segurança e performance para aplicações",
+  "main": "index.js",
+  "scripts": {
+    "security-scan": "node scripts/security_scanner.py",
+    "api-performance": "node scripts/api-performance.js",
+    "cloud-costs": "node scripts/cloud-cost-analyzer.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dotsoffa/security-performance-dashboard.git"
+  },
+  "keywords": [
+    "segurança",
+    "monitoramento",
+    "performance",
+    "cloud",
+    "dashboard"
+  ],
+  "author": "dotdigitalgroup",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "chart.js": "^3.9.1"
+  }
+}
