@@ -1,0 +1,34 @@
+name: Performance Monitor
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Executa a cada 6 horas
+  workflow_dispatch:  # Permite execução manual
+
+jobs:
+  monitor-apis:
+    runs-on: ubuntu-latest
+    name: Monitor API Performance
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      
+      - name: Install Dependencies
+        run: npm install axios
+      
+      - name: Run API Performance Tests
+        run: node scripts/api-performance.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+      - name: Create Performance Report Issue
+        uses: peter-evans/create-issue-from-file@v4
+        with:
+          title: Relatório de Performance - ${{ github.run_number }}
+          content-filepath: ./performance-report.md
+          labels: performance, automated-report
